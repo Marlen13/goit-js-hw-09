@@ -22,6 +22,6 @@ function getRandomHexColor() {
 
 function stopClick() {
   btnStart.classList.remove('disable');
-  clearInterval(intervalId);
-  console.dir(`stop color`);
+  clearInterva(intervalId);
+  console.dir('stop color');
 }
