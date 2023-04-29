@@ -17,11 +17,34 @@ img {
   display: block;
   max-width: 100%;
 }
-
+/* task1 style div buttons start && stop*/
 .box {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
+/* -task1  end style-------------------- */
+
+/* task2 style input */
+#datetime-picker {
+  width: 200px;
+}
+
+/* task2 style timer */
+.timer {
+  display: flex;
+  
+  gap: 15px;
+  margin-top: 25px;
  
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.value {
+  font-size: 26px;
+}
+/* --task2 end style--------------------- */
