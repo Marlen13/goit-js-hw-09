@@ -7,6 +7,7 @@ const days = document.querySelector('[data-days]');
 const hours = document.querySelector('[data-hours]');
 const minutes = document.querySelector('[data-minutes]');
 const seconds = document.querySelector('[data-seconds]');
+btnStart.disabled = true;
 
 const options = {
   enableTime: true,
@@ -17,38 +18,30 @@ const options = {
     console.log(selectedDates[0]);
     const currentDate = Date.now();
     const chooseDate = selectedDates[0].getTime();
-
-    console.log(currentDate);
-
-    if (chooseDate <= currentDate) {
-      btnStart.disabled = true;
-
+    if (chooseDate - currentDate <= 0) {
       window.alert('Please choose a date in the future');
     }
     btnStart.disabled = false;
-    btnStart.addEventListener('click', countTimer);
-    let idCountTimer = setInterval(countTimer, 1000);
-    function countTimer() {
-      const currentDate = Date.now();
-
-      const chooseDate = selectedDates[0].getTime();
-
-      let counter = chooseDate - currentDate;
-
-      let change = convertMs(counter);
-
-      if (counter < 0) {
-        clearInterval(idCountTimer);
-      }
-      days.textContent = change.days.toString().padStart(2, '0');
-      hours.textContent = change.hours.toString().padStart(2, '0');
-      minutes.textContent = change.minutes.toString().padStart(2, '0');
-      seconds.textContent = change.seconds.toString().padStart(2, '0');
-    }
   },
 };
-flatpickr(input, options);
+const datePicker = flatpickr(input, options);
+console.log(datePicker.selectedDates[0].getTime());
 
+btnStart.addEventListener('click', countTimer);
+function countTimer() {
+  let idCountTimer = null;
+  idCountTimer = setInterval(() => {
+    const currentDate = Date.now();
+    let change = convertMs(datePicker.selectedDates[0].getTime() - currentDate);
+    days.textContent = change.days.toString().padStart(2, '0');
+    hours.textContent = change.hours.toString().padStart(2, '0');
+    minutes.textContent = change.minutes.toString().padStart(2, '0');
+    seconds.textContent = change.seconds.toString().padStart(2, '0');
+    if (datePicker.selectedDates[0].getTime() - currentDate < 1000) {
+      clearInterval(idCountTimer);
+    }
+  }, 1000);
+}
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
