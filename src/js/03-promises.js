@@ -7,9 +7,9 @@ function createPromise(position, delay) {
       const data = { position, delay };
       if (shouldResolve) {
         // Fulfill
-        resolve(data);
+        res(data);
       } else {
-        reject(data);
+        rej(data);
       }
     }, delay);
   });
