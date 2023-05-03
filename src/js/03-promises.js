@@ -18,11 +18,11 @@ const formPromise = document.querySelector('.form');
 
 formPromise.addEventListener('submit', e => {
   e.preventDefault();
-  const delay = formPromise.elements.delay.value;
+  const delay = parseInt(formPromise.elements.delay.value);
   console.dir(delay);
-  const step = formPromise.elements.step.value;
+  const step = parseInt(formPromise.elements.step.value);
   console.dir(step);
-  const amount = formPromise.elements.amount.value;
+  const amount = parseInt(formPromise.elements.amount.value);
   console.dir(amount);
   for (let position = 1; position <= amount; position += 1) {
     const currentDelay = delay + step * (position - 1);
