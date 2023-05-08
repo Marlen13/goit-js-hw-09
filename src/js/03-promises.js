@@ -27,16 +27,16 @@ formPromise.addEventListener('submit', e => {
   for (let position = 1; position <= amount; position += 1) {
     const currentDelay = delay + step * (position - 1);
     createPromise(position, currentDelay)
-      .then(({ position, delay }) => {
+      .then(({ position, currentDelay }) => {
         // console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
         Notiflix.Notify.success(
-          `✅ Fulfilled promise ${position} in ${delay}ms`
+          `✅ Fulfilled promise ${position} in ${currentDelay}ms`
         );
       })
-      .catch(({ position, delay }) => {
+      .catch(({ position, currentDelay }) => {
         //     console.log(`❌ Rejected promise ${position} in ${delay}ms`);
         Notiflix.Notify.failure(
-          `❌ Rejected promise ${position} in ${delay}ms`
+          `❌ Rejected promise ${position} in ${currentDelay}ms`
         );
       });
   }
